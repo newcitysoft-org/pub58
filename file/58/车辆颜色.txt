@@ -1,0 +1,1 @@
+background-color nameblack 黑white 白#E6E6E6 银#D6D6D6 灰red 红#3399FF 蓝#FFFF00 黄#996600 棕#0DCF6E 绿#FF6600 橙#CC3399 紫#F3EEAA 香槟#FFCC00 金#FFC0CB 粉红
