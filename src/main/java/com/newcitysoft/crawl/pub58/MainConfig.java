@@ -11,6 +11,8 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
+import com.newcitysoft.crawl.pub58.controller.AuthController;
+import com.newcitysoft.crawl.pub58.controller.IndexController;
 import com.newcitysoft.crawl.pub58.model.CarReleaseAutoParmCode;
 import com.newcitysoft.crawl.pub58.model._MappingKit;
 import com.newcitysoft.crawl.pub58.util.FileUtil;
@@ -47,7 +49,7 @@ public class MainConfig extends JFinalConfig {
     public void configConstant(Constants me) {
         // 加载少量必要配置，随后可用PropKit.get(...)获取值
         PropKit.use("config.properties");
-        me.setDevMode(PropKit.getBoolean("devMode", false));
+        me.setDevMode(PropKit.getBoolean("devMode", true));
     }
 
     /**
@@ -55,6 +57,9 @@ public class MainConfig extends JFinalConfig {
      */
     @Override
     public void configRoute(Routes me) {
+        // 第三个参数为该Controller的视图存放路径
+        me.add("/", IndexController.class, "/index");
+        me.add("/auth", AuthController.class, "/WEB-INF/auth");
     }
 
     @Override
@@ -66,15 +71,15 @@ public class MainConfig extends JFinalConfig {
      */
     @Override
     public void configPlugin(Plugins me) {
-        // 配置 druid 数据库连接池插件
-        DruidPlugin druidPlugin = new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
-        me.add(druidPlugin);
-
-        // 配置ActiveRecord插件
-        ActiveRecordPlugin arp = new ActiveRecordPlugin(druidPlugin);
-        // 所有映射在 MappingKit 中自动化搞定
-        _MappingKit.mapping(arp);
-        me.add(arp);
+//        // 配置 druid 数据库连接池插件
+//        DruidPlugin druidPlugin = new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
+//        me.add(druidPlugin);
+//
+//        // 配置ActiveRecord插件
+//        ActiveRecordPlugin arp = new ActiveRecordPlugin(druidPlugin);
+//        // 所有映射在 MappingKit 中自动化搞定
+//        _MappingKit.mapping(arp);
+//        me.add(arp);
     }
 
     public static DruidPlugin createDruidPlugin() {
