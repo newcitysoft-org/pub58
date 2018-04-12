@@ -113,7 +113,7 @@ public class Test {
 
 		send.setCate_id("29");
 		// 这里的城市id ,一定要和账户中的城市一致，而id则可以从58提供的文档上找
-		send.setLocal_id("6700");
+		send.setLocal_id("1");
 		send.setTitle("丰田锐志 2008款 2.5V 豪华版 2008年上牌-全网最实惠价+物超所值+清仓价");
 		send.setContent("1、车辆介绍：2008年6月份上牌、一手车、保险和年审都到2014年6月份、车身内外都有8.5成新、车况超靓和后驱车动力十足、空间超级大和宽敞。2.5自动波、豪华版带天窗、DVD导航、胎压监测装置、车内中控锁、遥控钥匙、ABS防抱死、真皮方向盘、真皮座椅、氙气大灯、恒温空调、定速巡航等等最先进配置。原车主爱车如爱子、每走5000公里就会定时保养和检测车子、平常只用于上下班代步用途、杜绝一切不惜车的行为确保车辆：新+靓。");
 		send.setPhone("13655454545");
@@ -204,7 +204,7 @@ public class Test {
 		update.setParamVO(paramVO);
 		update.setCate_id("29");
 		// 这里的城市id ,一定要和账户中的城市一致，而id则可以从58提供的文档上找
-		update.setLocal_id("6700");
+		update.setLocal_id("1");
 		update.setTitle("丰田锐志 2009款 2.5V 豪华版 2008年上牌-全网最实惠价+物超所值+清仓价");
 		update.setContent("1、车辆介绍：2008年6月份上牌、一手车、保险和年审都到2014年6月份、车身内外都有8.5成新、车况超靓和后驱车动力十足、空间超级大和宽敞。2.5自动波、豪华版带天窗、DVD导航、胎压监测装置、车内中控锁、遥控钥匙、ABS防抱死、真皮方向盘、真皮座椅、氙气大灯、恒温空调、定速巡航等等最先进配置。原车主爱车如爱子、每走5000公里就会定时保养和检测车子、平常只用于上下班代步用途、杜绝一切不惜车的行为确保车辆：新+靓。");
 		update.setPhone("13655454545");
@@ -286,8 +286,8 @@ public class Test {
 			token.setUserName("15841694657");
 			token.setPassword("axin19930930");
 			token.setUid("52147071000845");
-			token.setRefresh_token("294f8f4ef27ad5254fdffaa411331f4_v1");
-			token.setAccess_token("e19acffddaec63aac6748714be663ef_v1");
+			token.setRefresh_token("7c61d61a229b7837d42ad77a4183bcfb_v1");
+			token.setAccess_token("f49f47380962a3c6f758d9599663018_v1");
 			token.setExpires_in("364");
 
 //			token.setUid("52147071000845");
@@ -295,8 +295,8 @@ public class Test {
 //			token.setAccess_token("8dfb1b191af99369486528443734ace0_v1");
 //			token.setRefresh_token("ef3bb66f9d7369fb1c51f7d8dede3b63_v1");
 
-			Token token1 = getToken(token);
-			System.out.println(token1.toString());
+//			Token token1 = getToken(token);
+//			System.out.println(token1.toString());
 			testSend(token, null);
 
 			// 不带图片的

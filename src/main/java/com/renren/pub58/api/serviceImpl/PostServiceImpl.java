@@ -11,6 +11,7 @@ import com.renren.pub58.api.service.PostService;
 import com.renren.pub58.api.util.CommonRequest;
 import com.renren.pub58.api.util.StringUtil;
 import com.renren.pub58.util.HttpClientUtil;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.log4j.Logger;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.support.EncodedResource;
@@ -44,7 +45,7 @@ public class PostServiceImpl implements PostService {
 			logger.debug("send(PostSend, MediaType) - start");
 		}
 
-//		MultiValueMap<String, String> mvm = new LinkedMultiValueMap<String, String>();
+//		MultiValueMap<String, Object> mvm = new LinkedMultiValueMap<String, Object>();
 		Map<String, String> mvm = new HashMap<>();
 
 		mvm.put("cate_id", send.getCate_id() != null ? send.getCate_id() : "");
@@ -62,16 +63,19 @@ public class PostServiceImpl implements PostService {
 //				FileSystemResource resource = new FileSystemResource(new File(pic[i], ""));
 //				EncodedResource encRes = new EncodedResource(resource, "UTF-8");
 //				FileSystemResource resource2 = (FileSystemResource) encRes.getResource();
-//				mvm.add("pic" + i, resource2);
+//				mvm.put("pic" + i, resource2);
 //
 //			}
 //		}
 
 		mvm.put("paras", wrapParas(send));
 
-		mvm.put("time_sign", String.valueOf(System.currentTimeMillis()));
+		String time_sign = String.valueOf(System.currentTimeMillis());
+		System.out.println(time_sign);
+
+		mvm.put("time_sign", time_sign);
 		mvm.put("client_id", String.valueOf(Constants.CLIENT_ID));
-		mvm.put("client_secret", Constants.getClientSecretMD5());
+		mvm.put("client_secret", DigestUtils.md5Hex(Constants.CLIENT_SECRET + "openapi.58.com" + time_sign));
 		mvm.put("58user_id", token.getUid());
 		mvm.put("access_token", token.getAccess_token());
 		String response = "";
@@ -115,7 +119,6 @@ public class PostServiceImpl implements PostService {
 			logger.debug("update(PostUpdate) - start");
 		}
 
-		CommonRequest commonRequest = new CommonRequest();
 		MultiValueMap<String, Object> mvm = new LinkedMultiValueMap<String, Object>();
 		mvm.add("infoid", String.valueOf(update.getInfoid()));
 

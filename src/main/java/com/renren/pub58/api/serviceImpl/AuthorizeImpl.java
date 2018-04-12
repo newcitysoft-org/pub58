@@ -82,9 +82,12 @@ public class AuthorizeImpl implements AuthorizeService {
 		mvm.add("refresh_token", token.getRefresh_token());
 		mvm.add("grant_type", "refresh_token");
 		mvm.add("redirect_uri", Constants.REDIRECT_URI);
-		mvm.add("time_sign", String.valueOf(System.currentTimeMillis()));
+
+		String time_sign = String.valueOf(System.currentTimeMillis());
+
+		mvm.add("time_sign", time_sign);
 		mvm.add("client_id", String.valueOf(Constants.CLIENT_ID));
-		mvm.add("client_secret", DigestUtils.md5Hex(Constants.CLIENT_SECRET + "openapi.58.com" + String.valueOf(System.currentTimeMillis())));
+		mvm.add("client_secret", DigestUtils.md5Hex(Constants.CLIENT_SECRET + "openapi.58.com" + time_sign));
 		mvm.add("58user_id", token.getUid());
 
 		String response = (String) CommonRequest.request(uri, null, mvm, HttpMethod.POST, String.class);
@@ -98,7 +101,7 @@ public class AuthorizeImpl implements AuthorizeService {
 	public static void main(String[] args) {
 		AuthorizeService authorizeService = new AuthorizeImpl();
 //		System.out.println(authorizeService.getTempToken());
-		//System.out.println(authorizeService.getToken("8829d4184b746885232ffff22f894fce"));
+//		System.out.println(authorizeService.getToken("83b61f768f863c14fc79748522b381b"));
 
 
 		Token token = new Token();
