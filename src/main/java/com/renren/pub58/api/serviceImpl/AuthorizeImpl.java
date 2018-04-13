@@ -98,21 +98,26 @@ public class AuthorizeImpl implements AuthorizeService {
 
 	}
 
+	// 13469612888
+	// Sj13469612888
+	// 某车上token 银川
+	// Token{userName='null', password='null', uid='19475933152263', expires_in='364', refresh_token='5876228671f0d56664de508fe25592d1_v1', access_token='ac25d95fba39b21af1a9e26cf4324ca_v1'}
+
 	public static void main(String[] args) {
 		AuthorizeService authorizeService = new AuthorizeImpl();
 //		System.out.println(authorizeService.getTempToken());
-//		System.out.println(authorizeService.getToken("83b61f768f863c14fc79748522b381b"));
+		System.out.println(authorizeService.getToken("d146b6cd3977ddd555898c632a99d37"));
 
 
-		Token token = new Token();
-		token.setUserName("15841694657");
-		token.setPassword("axin19930930");
-		token.setUid("52147071000845");
-		token.setRefresh_token("294f8f4ef27ad5254fdffaa411331f4_v1");
-		token.setAccess_token("e19acffddaec63aac6748714be663ef_v1");
-		token.setExpires_in("364");
+//		Token token = new Token();
+//		token.setUserName("15841694657");
+//		token.setPassword("axin19930930");
+//		token.setUid("52147071000845");
+//		token.setRefresh_token("294f8f4ef27ad5254fdffaa411331f4_v1");
+//		token.setAccess_token("e19acffddaec63aac6748714be663ef_v1");
+//		token.setExpires_in("364");
 
-		System.out.println(authorizeService.refreshToken(token).toString());
+//		System.out.println(authorizeService.refreshToken(token).toString());
 
 	}
 }

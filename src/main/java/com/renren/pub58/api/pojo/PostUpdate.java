@@ -1,12 +1,3 @@
-/**   
- * 
- * @Title: PostUpdate.java 
- * @Project: 58gateway-parent
- * @Package: com.zuche.gateway.pojo 
- * @Description: TODO
- * @date: 2016年3月15日 下午7:46:40 
- * @version: V1.0   
- */
 package com.renren.pub58.api.pojo;
 
 /**

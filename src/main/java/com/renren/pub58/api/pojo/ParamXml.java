@@ -1,12 +1,3 @@
-/**   
- * 
- * @Title: Xml.java 
- * @Project: 58gateway-parent
- * @Package: com.zuche.gateway.pojo 
- * @Description: TODO 
- * @date: 2016年3月16日 上午10:07:53 
- * @version: V1.0   
- */
 package com.renren.pub58.api.pojo;
 
 import java.net.URLEncoder;
@@ -265,11 +256,13 @@ public class ParamXml {
 	 * @return the erscpinpai
 	 */
 	public String getErscpinpai() {
-
-		if (erscpinpai.length() > 20) {
-			return erscpinpai.substring(0, 19);
+		if(erscpinpai!=null) {
+			if (erscpinpai.length() > 20) {
+				return erscpinpai.substring(0, 19);
+			}
+			return erscpinpai;
 		}
-		return erscpinpai;
+		return null;
 	}
 
 	/**

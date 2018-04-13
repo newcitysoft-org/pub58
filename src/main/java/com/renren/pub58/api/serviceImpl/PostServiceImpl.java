@@ -45,49 +45,49 @@ public class PostServiceImpl implements PostService {
 			logger.debug("send(PostSend, MediaType) - start");
 		}
 
-//		MultiValueMap<String, Object> mvm = new LinkedMultiValueMap<String, Object>();
-		Map<String, String> mvm = new HashMap<>();
+		MultiValueMap<String, Object> mvm = new LinkedMultiValueMap<String, Object>();
+//		Map<String, String> mvm = new HashMap<>();
 
-		mvm.put("cate_id", send.getCate_id() != null ? send.getCate_id() : "");
-		mvm.put("local_id", send.getLocal_id() != null ? send.getLocal_id() : "");
-		mvm.put("title", send.getTitle() != null ? send.getTitle() : "");
-		mvm.put("content", send.getContent() != null ? send.getContent() : "");
-		mvm.put("phone", send.getPhone() != null ? send.getPhone() : "");
-		mvm.put("email", send.getEmail() != null ? send.getEmail() : "");
-		mvm.put("im", send.getIm() != null ? send.getIm() : "");
+		mvm.add("cate_id", send.getCate_id() != null ? send.getCate_id() : "");
+		mvm.add("local_id", send.getLocal_id() != null ? send.getLocal_id() : "");
+		mvm.add("title", send.getTitle() != null ? send.getTitle() : "");
+		mvm.add("content", send.getContent() != null ? send.getContent() : "");
+		mvm.add("phone", send.getPhone() != null ? send.getPhone() : "");
+		mvm.add("email", send.getEmail() != null ? send.getEmail() : "");
+		mvm.add("im", send.getIm() != null ? send.getIm() : "");
 
-//		if (send.getPic() != null && send.getPic().length > 0) {
-//			String[] pic = send.getPic();
-//			for (int i = 0; i < pic.length; i++) {
-//
-//				FileSystemResource resource = new FileSystemResource(new File(pic[i], ""));
-//				EncodedResource encRes = new EncodedResource(resource, "UTF-8");
-//				FileSystemResource resource2 = (FileSystemResource) encRes.getResource();
-//				mvm.put("pic" + i, resource2);
-//
-//			}
-//		}
+		if (send.getPic() != null && send.getPic().length > 0) {
+			String[] pic = send.getPic();
+			for (int i = 0; i < pic.length; i++) {
 
-		mvm.put("paras", wrapParas(send));
+				FileSystemResource resource = new FileSystemResource(new File(pic[i], ""));
+				EncodedResource encRes = new EncodedResource(resource, "UTF-8");
+				FileSystemResource resource2 = (FileSystemResource) encRes.getResource();
+				mvm.add("pic" + i, resource2);
+
+			}
+		}
+
+		mvm.add("paras", wrapParas(send));
 
 		String time_sign = String.valueOf(System.currentTimeMillis());
 		System.out.println(time_sign);
 
-		mvm.put("time_sign", time_sign);
-		mvm.put("client_id", String.valueOf(Constants.CLIENT_ID));
-		mvm.put("client_secret", DigestUtils.md5Hex(Constants.CLIENT_SECRET + "openapi.58.com" + time_sign));
-		mvm.put("58user_id", token.getUid());
-		mvm.put("access_token", token.getAccess_token());
-		String response = "";
-		try {
-			response = HttpClientUtil.doPost(Constants.URI_PREFIX + "gateway/postservice/send", mvm, "utf-8");
-			System.out.println(response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		mvm.add("time_sign", time_sign);
+		mvm.add("client_id", String.valueOf(Constants.CLIENT_ID));
+		mvm.add("client_secret", DigestUtils.md5Hex(Constants.CLIENT_SECRET + "openapi.58.com" + time_sign));
+		mvm.add("58user_id", token.getUid());
+		mvm.add("access_token", token.getAccess_token());
+//		String response = "";
+//		try {
+//			response = HttpClientUtil.doPost(Constants.URI_PREFIX + "gateway/postservice/send", mvm, "utf-8");
+//			System.out.println(response);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 
-		//String response = (String) CommonRequest.request("gateway/postservice/send", mediaType, mvm, HttpMethod.POST, String.class);
-
+		String response = (String) CommonRequest.request("gateway/postservice/send", mediaType, mvm, HttpMethod.POST, String.class);
+		System.out.println(response);
 		Gson gson = new Gson();
 		ServiceResponse serviceResponse = gson.fromJson(response, ServiceResponse.class);
 
@@ -145,13 +145,16 @@ public class PostServiceImpl implements PostService {
 
 		mvm.add("paras", wrapParas(update));
 
-		mvm.add("time_sign", String.valueOf(System.currentTimeMillis()));
+		String time_sign = String.valueOf(System.currentTimeMillis());
+
+		mvm.add("time_sign", time_sign);
 		mvm.add("client_id", String.valueOf(Constants.CLIENT_ID));
-		mvm.add("client_secret", Constants.getClientSecretMD5());
+		mvm.add("client_secret", DigestUtils.md5Hex(Constants.CLIENT_SECRET + "openapi.58.com" + time_sign));
 		mvm.add("58user_id", token.getUid());
 		mvm.add("access_token", token.getAccess_token());
 
 		String response = (String) CommonRequest.request("gateway/postservice/update", mediaType, mvm, HttpMethod.POST, String.class);
+		System.out.println(response);
 		Gson gson = new Gson();
 		ServiceResponse serviceResponse = gson.fromJson(response, ServiceResponse.class);
 		if (logger.isDebugEnabled()) {
@@ -160,19 +163,11 @@ public class PostServiceImpl implements PostService {
 		return serviceResponse;
 	}
 
-	/*
-	 * (non Javadoc)
-	 * 
-	 * @Title: delete
-	 * 
-	 * @Description: 删除帖子
-	 * 
+	/**
+	 * 删除帖子
 	 * @param delete
-	 * 
+	 * @param token
 	 * @return
-	 * 
-	 * @see com.zuche.gateway.service.PostService#delete(com.zuche.gateway.pojo.
-	 * PostDelete)
 	 */
 	@SuppressWarnings("static-access")
 	@Override
@@ -182,11 +177,14 @@ public class PostServiceImpl implements PostService {
 		}
 
 		CommonRequest commonRequest = new CommonRequest();
+
+		String time_sign = String.valueOf(System.currentTimeMillis());
+
 		MultiValueMap<String, Object> mvm = new LinkedMultiValueMap<String, Object>();
 		mvm.add("infoid", String.valueOf(delete.getInfoid()));
-		mvm.add("time_sign", String.valueOf(System.currentTimeMillis()));
+		mvm.add("time_sign", time_sign);
 		mvm.add("client_id", String.valueOf(Constants.CLIENT_ID));
-		mvm.add("client_secret", Constants.getClientSecretMD5());
+		mvm.add("client_secret", DigestUtils.md5Hex(Constants.CLIENT_SECRET + "openapi.58.com" + time_sign));
 		mvm.add("58user_id", token.getUid());
 		mvm.add("access_token", token.getAccess_token());
 

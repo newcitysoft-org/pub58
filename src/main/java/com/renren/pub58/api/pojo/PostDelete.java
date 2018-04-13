@@ -1,12 +1,3 @@
-/**   
- * 
- * @Title: PostDelete.java 
- * @Project: 58gateway-parent
- * @Package: com.zuche.gateway.pojo 
- * @Description: TODO
- * @date: 2016年3月15日 下午7:47:29 
- * @version: V1.0   
- */
 package com.renren.pub58.api.pojo;
 
 

@@ -1,12 +1,3 @@
-/**   
- * 
- * @Title: Constant.java 
- * @Project: 58gateway-parent
- * @Package: com.zuche.gateway.constant 
- * @Description: 存放所有静态参数，如有需要可以提取出.properties配置文件。
- * @date: 2016年3月15日 上午11:31:12 
- * @version: V1.0   
- */
 package com.renren.pub58.api.constant;
 
 import org.apache.commons.codec.digest.DigestUtils;

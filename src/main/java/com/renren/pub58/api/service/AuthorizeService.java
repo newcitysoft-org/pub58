@@ -1,12 +1,3 @@
-/**   
- * 
- * @Title: Authorize.java 
- * @Project: 58gateway-parent
- * @Package: com.zuche.gateway.service 
- * @Description: TODO
- * @date: 2016年3月15日 下午1:32:54 
- * @version: V1.0   
- */
 package com.renren.pub58.api.service;
 
 

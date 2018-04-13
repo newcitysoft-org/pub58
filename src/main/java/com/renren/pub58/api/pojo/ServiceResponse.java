@@ -1,12 +1,3 @@
-/**   
- * 
- * @Title: Response58.java 
- * @Project: 58gateway-parent
- * @Package: com.zuche.gateway.pojo 
- * @Description: TODO
- * @date: 2016年3月15日 下午1:38:07 
- * @version: V1.0   
- */
 package com.renren.pub58.api.pojo;
 
 
@@ -21,7 +12,7 @@ public class ServiceResponse {
 	 * 如有错误，则格式为{"error":"invalid_client","error_description":"invalid user auth"
 	 * }
 	 */
-	private String error;
+		private String error;
 
 	private String errorDescription;
 
