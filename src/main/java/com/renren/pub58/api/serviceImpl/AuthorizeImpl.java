@@ -106,7 +106,7 @@ public class AuthorizeImpl implements AuthorizeService {
 	public static void main(String[] args) {
 		AuthorizeService authorizeService = new AuthorizeImpl();
 //		System.out.println(authorizeService.getTempToken());
-		System.out.println(authorizeService.getToken("d146b6cd3977ddd555898c632a99d37"));
+		System.out.println(authorizeService.getToken("4977a299c16bddb7b177ce92be6d38"));
 
 
 //		Token token = new Token();
